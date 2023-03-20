@@ -53,7 +53,7 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    count_letter = tbl0["_c1"].values_counts().sort_index()
+    count_letter = tbl0.value_counts('_c1').reset_index().sort_values('_c1').set_index('_c1')[0]
     return count_letter
 
 
@@ -223,10 +223,10 @@ def pregunta_12():
     """
     tbl2 = pd.read_csv("tbl2.tsv", sep='\t')
     tbl2['_c5'] = tbl2['_c5a'] + ':' + tbl2['_c5b'].astype(str)
-    tbl2_agrupado = tbl2.groupby('_c0')['_c5'].apply(lambda x: ','.join(sorted(x))).reset_index()
-    tbl2_agrupado['_c5'] = tbl2_agrupado['_c5'].astype(str)
-    tbl2_agrupado.columns = ['_c0', '_c5']
-    return tbl2_agrupado
+    tbl2_agrup = tbl2.groupby('_c0')['_c5'].apply(lambda x: ','.join(sorted(x))).reset_index()
+    tbl2_agrup['_c5'] = tbl2_agrup['_c5'].astype(str)
+    tbl2_agrup.columns = ['_c0', '_c5']
+    return tbl2_agrup
 
 
 def pregunta_13():
