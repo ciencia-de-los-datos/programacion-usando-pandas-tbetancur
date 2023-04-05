@@ -14,7 +14,7 @@ tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
 tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
 tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
 
-
+ 
 def pregunta_01():
     """
     ¿Cuál es la cantidad de filas en la tabla `tbl0.tsv`?
@@ -53,7 +53,7 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    count_letter = tbl0.value_counts('_c1').reset_index().sort_values('_c1').set_index('_c1')[0]
+    count_letter = tbl0.groupby(['_c1'])._c1.count()
     return count_letter
 
 
